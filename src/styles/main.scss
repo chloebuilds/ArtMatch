@@ -1,0 +1,13 @@
+@import '~bulma/bulma.sass';
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 10vw;
+  background: rgb(166, 137, 245) 0%;
+  background-image: linear-gradient(180deg, rgb(245, 137, 204) 0%, rgb(148, 233, 176) 100%);
+
+  background-attachment: fixed;
+}
