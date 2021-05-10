@@ -12,9 +12,8 @@ GET {{baseUrl}}/
 
 ###
 
-# GET A SINGLE ART
+# GET A SINGLE ARTÍ
+@artId = 516dfb9ab31e2b2270000c45
 
-@artId = 4d8b92b34eb68a1b2c0003f4
-
-GET https://api.artsy.net/api/artists/andy-warhol
+GET https://api.artsy.net/api/artworks/{{artId}}
 X-Xapp-Token: eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IiIsInN1YmplY3RfYXBwbGljYXRpb24iOiI2MDk5MmZjMGZhYjA2MTAwMTQ5OWMzZjYiLCJleHAiOjE2MjEyNTY3NjksImlhdCI6MTYyMDY1MTk2OSwiYXVkIjoiNjA5OTJmYzBmYWIwNjEwMDE0OTljM2Y2IiwiaXNzIjoiR3Jhdml0eSIsImp0aSI6IjYwOTkyZmMxODUwMGMwMDAwZmQyNjI1MCJ9.qPDq318iVJigLSVnGWM1E7wVAq68fOzxmCgE62HwHv8
