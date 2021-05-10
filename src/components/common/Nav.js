@@ -11,6 +11,7 @@ function Nav() {
           <Link className="navbar-item" to="/">
           🎨
           </Link>
+          <Link className="navbar-item" to="/artists"> Artists </Link>
           {/* <div className="navbar-menu">
             <div className="navbar-start">
               <Link className="navbar-item" to="/search">

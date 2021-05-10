@@ -13,6 +13,13 @@ export function getTokenFromAPI() {
   return axios.post(`${tokenUrl}`, headers())
 }
 
-export function getTokenFromLocalStorage(token) {
+export function setTokenToLocalStorage(token) {
   localStorage.setItem('token', token)
+}
+export function getTokenFromLocalStorage() {
+  return localStorage.getItem('token')
+}
+
+export function getAllArtists() {
+  return axios.get('https://api.artsy.net/api/artists?size=200', headers())
 }
