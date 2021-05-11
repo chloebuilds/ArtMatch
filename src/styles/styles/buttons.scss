@@ -1,0 +1,56 @@
+
+$swipe-color: #F61067;
+$enter-color: #5E239D;
+.button-container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.button {
+  display: inline-block;
+  padding: .75rem 1.25rem;
+  margin: 10px;
+  border-radius: 10rem;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  padding-bottom: 5px;
+  font-size: 1rem;
+  letter-spacing: .15rem;
+  transition: all .3s;
+  // position: relative;
+  overflow: hidden;
+  z-index: 1;
+  .enter {
+    background-color: $enter-color;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $swipe-color;
+    border-radius: 10rem;
+    z-index: -2;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0%;
+    height: 100%;
+    background-color: darken($swipe-color, 15%);
+    transition: all .3s;
+    border-radius: 10rem;
+    z-index: -1;
+  }
+  &:hover {
+    color: #fff;
+    &:before {
+      width: 100%;
+    }
+  }
+}

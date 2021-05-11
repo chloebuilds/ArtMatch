@@ -12,7 +12,7 @@ function Nav() {
           🎨 ArtMatch
           </Link>
           <Link className="navbar-item" to="/artists"> 
-          Artists </Link>
+          Find your Art match! </Link>
           <Link className="navbar-item" to="/matches">
           Your Matches 
           </Link>

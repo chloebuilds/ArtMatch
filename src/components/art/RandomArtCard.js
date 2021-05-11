@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { getTokenFromAPI, setTokenToLocalStorage, getAllArtists } from '../../lib/api'
+import {  getAllArtists } from '../../lib/api'
 
-function RandomArtCard({ id, name, image }) {
+function RandomArtCard() {
 
   const [artistList, setArtistList] = React.useState(null)
   const [randomArtist, setRandomArtist] = React.useState(null)
@@ -25,19 +25,15 @@ function RandomArtCard({ id, name, image }) {
     setRandomArtist(newRandomArtist)
   }
 
-  function handleYay() {
-    
-  }
-
   React.useEffect(() => {
     const getData = async () => {
       setLoading(true)
       try {
-        const tokenResponse = await getTokenFromAPI()
-        setTokenToLocalStorage(tokenResponse.data.token)
+        
         const res = await getAllArtists()
         const artists = res.data._embedded.artists
         const artistsWithRequisiteDetails = artists.filter(artist => {
+
           return (
             !!artist.name &&
             !artist.name.startsWith('Attributed') &&
@@ -48,6 +44,10 @@ function RandomArtCard({ id, name, image }) {
         })          
         setArtistList(artistsWithRequisiteDetails) 
         const random = getRandomArtist(artists, [])
+        console.log('artist.location', random.location)
+        console.log('random', random)
+        console.log('artist.location', typeof random.location)
+        console.log('artist.location', !!random.location)
         setRandomArtist(random) 
       } catch (err) {
         setError(err)
@@ -62,32 +62,27 @@ function RandomArtCard({ id, name, image }) {
     return <h1>Loading</h1>
   }
 
-
+  console.log(randomArtist, 'hey')
   return (
     <div className="art-container">
-      <Link to={`artists/${id}`}>
-        <div className="card">
-          <div className="card-header">
-            <div className="card-header-title">{randomArtist.name}</div>
-          </div>
-          <div className="card-image">
-            <figure className="image">
-              <img style={{ minWidth: 500 }} src={randomArtist._links.image.href.replace('{image_version}', 'large')} alt={name}/>
-            </figure>
-          </div>
-          <div className="art-card-content">
-            <h5>Location: {randomArtist.location}</h5>
-          </div>
+      <div className="card">
+        <div className="card-header">
+          <div className="card-header-title">{randomArtist.name}</div>
         </div>
-      </ Link>
-      <button onClick={handleUgh} className="button">	
+        <div className="card-image">
+          <figure className="image">
+            <img style={{ minWidth: 500 }} src={randomArtist._links.image.href.replace('{image_version}', 'large')} alt={randomArtist.name}/>
+          </figure>
+        </div>
+      </div>
+      <div className="button-container">
+        <button onClick={handleUgh} className="button">	
         &#10006; Ugh!</button>
-      <Link to="/:artistId"><button onClick={handleYay} className="button">
+        <Link to={`artists/${randomArtist.id}`}><button className="button">
         &hearts; Yay!</button></ Link>
+      </div>
     </div>
   )
 }
 
 export default RandomArtCard
-
-//{randomArtist.name} {randomArtist.location}  

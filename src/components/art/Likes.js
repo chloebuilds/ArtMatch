@@ -1,8 +1,7 @@
 import React from 'react'
 
- function Likes() {
-
-  return <h1>Your likes</h1>Your likes
+function Search() {
+  return <h1>Coming soon!</h1>
 }
 
-export default Likes
+export default Search

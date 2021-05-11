@@ -1,24 +1,28 @@
 @import '~bulma/bulma.sass';
+@import 'styles/buttons.scss';
 
 /* optional reset for presentation */
 * {
   font-family: 'KoHo', sans-serif;;
   text-decoration: none;
-  font-size: 20px;
+  box-sizing: border-box;
 }
 .art-container {
   padding-top: 50px;
   margin: 0 auto;
-  // width: 100%;
-  text-align: center;
- 
+  width: 100%;
+
 }
 .art-card-content {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+}
+.artshow-container {
+
 }
 h1 {
   text-transform: uppercase;
-  font-size: .8rem;
+  // font-size: .8rem;
   margin-bottom: 2rem;
   color: #777;
 }
@@ -40,61 +44,16 @@ body {
   align-items: flex-start;
   padding: 0 10vw;
   background: #F4F4ED;
-  height: 100vh;
+  min-height: 100vh;
   // background-image: linear-gradient(180deg, rgb(245, 137, 204) 0%, rgb(148, 233, 176) 100%);
 
   background-attachment: fixed;
 }
 
-$swipe-color: #F61067;
-$enter-color: #5E239D;
 
-.button {
-  display: inline-block;
-  padding: .75rem 1.25rem;
-  margin: 10px;
-  border-radius: 10rem;
-  color: #fff;
-  text-transform: uppercase;
-  text-align: center;
-  padding-bottom: 5px;
-  font-size: 1rem;
-  letter-spacing: .15rem;
-  transition: all .3s;
-  // position: relative;
-  overflow: hidden;
-  z-index: 1;
-  .enter {
-    background-color: $enter-color;
-  }
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: $swipe-color;
-    border-radius: 10rem;
-    z-index: -2;
-  }
-  &:before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0%;
-    height: 100%;
-    background-color: darken($swipe-color, 15%);
-    transition: all .3s;
-    border-radius: 10rem;
-    z-index: -1;
-  }
-  &:hover {
-    color: #fff;
-    &:before {
-      width: 100%;
-    }
-  }
+footer {
+  margin: 50px;
+  padding: 10px;
+  background-color: #5E239D;
+  color: white;
 }
-
