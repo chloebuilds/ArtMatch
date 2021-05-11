@@ -45,7 +45,7 @@ function ArtShow() {
           <h5>Gender:</h5> {artist.gender || 'Unknown'}
         </div>
         <div className="art-card-content">
-          <h6>Nationality:</h6> {artist.nationality || 'Unknown'}
+          <h5>Nationality:</h5> {artist.nationality || 'Unknown'}
         </div>
         <div>
           <div className="art-card-content">
