@@ -7,7 +7,7 @@ import ArtShow from './components/art/ArtShow'
 import { getTokenFromAPI, setTokenToLocalStorage } from './lib/api'
 import Footer from './components/common/Footer'
 import Matches from './components/art/Matches'
-import Search from './components/art/Sea'
+import Search from './components/art/Search'
 
 
 function App() {
@@ -30,9 +30,9 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/artists/:artistId" component={ArtShow} />
           <Route path="/artists" component={RandomArtCard} />
+          <Route path="/matches" component={Matches} />
+          <Route path="/search" component={Search} />
         </Switch>
-        <Matches />
-        <Search />
         <Footer />
       </Router>
     </>

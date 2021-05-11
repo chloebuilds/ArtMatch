@@ -9,10 +9,10 @@ function Home() {
       <div className="hero-body">
         <div className="container">
           <div className="title is-1 has-text-centered">
-              ArtMatch | Find visual love
-            <p>
-              <Link to="/artists"><button className="button">Show me</button></Link>
-            </p>
+              ArtMatch | Find aesthetic love
+            <div className="button-container">
+              <Link to="/artists"><button className="button button-right">Show me</button></Link>
+            </div>
           </div>
         </div>
       </div>

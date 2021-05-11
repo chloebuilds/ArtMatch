@@ -42,26 +42,26 @@ function ArtShow() {
           <img style={{ minWidth: 500 }} src={artist._links.image.href.replace('{image_version}', 'large')} alt={artist.name}/>
         </figure>
         <div className="art-card-content">
-          <h6>Gender:</h6> {artist.gender}
+          <h5>Gender:</h5> {artist.gender || 'Unknown'}
         </div>
         <div className="art-card-content">
-          <h6>Nationality:</h6> {artist.nationality}
+          <h6>Nationality:</h6> {artist.nationality || 'Unknown'}
         </div>
         <div>
           <div className="art-card-content">
-            <h6>Location:</h6> {artist.location}
+            <h5>Location:</h5> {artist.location || 'Unknown'}
           </div>
           <div className="art-card-content">
-            <h6>Birthday:</h6> {artist.birthday}
+            <h5>Birthday:</h5> {artist.birthday || 'Unknown'}
           </div>
           <div className="art-card-content">
-            <h6>Death date:</h6> {artist.deathday || 'Unknown'}
+            <h5>Death date:</h5> {artist.deathday || 'Unknown'}
           </div>
           <div className="art-card-content">
-            <h6>Biography:</h6> {artist.biography || 'unknown: the dark and mysterious type'}
+            <h5>Biography:</h5> {artist.biography || 'unknown... the dark and mysterious type'}
           </div>
           <div>
-            <Link to="/artists"><button className="button">
+            <Link to="/artists"><button className="button button-right">
         &hearts; find more matches</button></ Link>
           </div>
         </div> 

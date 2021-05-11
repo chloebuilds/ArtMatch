@@ -44,10 +44,6 @@ function RandomArtCard() {
         })          
         setArtistList(artistsWithRequisiteDetails) 
         const random = getRandomArtist(artists, [])
-        console.log('artist.location', random.location)
-        console.log('random', random)
-        console.log('artist.location', typeof random.location)
-        console.log('artist.location', !!random.location)
         setRandomArtist(random) 
       } catch (err) {
         setError(err)
@@ -59,29 +55,32 @@ function RandomArtCard() {
   }, [])
 
   if (loading || !randomArtist) {
-    return <h1>Loading</h1>
+    return <div className="loading-message">Loading aesthetic pleasure, just for you..</div>
   }
 
-  console.log(randomArtist, 'hey')
+  
   return (
-    <div className="art-container">
-      <div className="card">
-        <div className="card-header">
-          <div className="card-header-title">{randomArtist.name}</div>
+    <>
+      <h1>Find your next ArtMatch</h1>
+      <div className="art-container">
+        <div className="card">
+          <div className="card-header">
+            <div className="card-header-title">{randomArtist.name}</div>
+          </div>
+          <div className="card-image">
+            <figure className="image">
+              <img src={randomArtist._links.image.href.replace('{image_version}', 'large')} alt={randomArtist.name}/>
+            </figure>
+          </div>
         </div>
-        <div className="card-image">
-          <figure className="image">
-            <img style={{ minWidth: 500 }} src={randomArtist._links.image.href.replace('{image_version}', 'large')} alt={randomArtist.name}/>
-          </figure>
-        </div>
-      </div>
-      <div className="button-container">
-        <button onClick={handleUgh} className="button">	
+        <div className="button-container">
+          <button onClick={handleUgh} className="button button-left">	
         &#10006; Ugh!</button>
-        <Link to={`artists/${randomArtist.id}`}><button className="button">
+          <Link to={`artists/${randomArtist.id}`}><button className="button button-right">
         &hearts; Yay!</button></ Link>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
