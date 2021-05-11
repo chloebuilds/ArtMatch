@@ -11,41 +11,43 @@ function RandomArtCard({ id, name, image }) {
   const [rejected, setRejected] = React.useState([])
 
   function getRandomArtist(artists, rejected) {
-    console.log(artists)
     const filteredArtists = artists.filter((artist) => {
       const isRejected = rejected.includes(artist.id)
       return !isRejected
     })
-    console.log(filteredArtists)
     return filteredArtists[Math.floor(Math.random() * filteredArtists.length)]
   }
 
-
-
   function handleUgh() {
     const updatedRejected = [ ...rejected, randomArtist.id ] 
-    setRejected(updatedRejected)
     const newRandomArtist = getRandomArtist(artistList, updatedRejected)
+    setRejected(updatedRejected)
     setRandomArtist(newRandomArtist)
   }
-  console.log('randomArtist', randomArtist)
+
   function handleYay() {
     
   }
 
   React.useEffect(() => {
     const getData = async () => {
-      console.log('hello')
       setLoading(true)
       try {
         const tokenResponse = await getTokenFromAPI()
         setTokenToLocalStorage(tokenResponse.data.token)
         const res = await getAllArtists()
         const artists = res.data._embedded.artists
-        const artistsWithRequisiteDetails = artists.filter(artist => !!artist.name && !!artist.location && !!artist.gender)
+        const artistsWithRequisiteDetails = artists.filter(artist => {
+          return (
+            !!artist.name &&
+            !artist.name.startsWith('Attributed') &&
+            !!artist.location &&
+            !!artist.gender &&
+            !!artist._links.image.href
+          )
+        })          
         setArtistList(artistsWithRequisiteDetails) 
         const random = getRandomArtist(artists, [])
-        console.log(random, 'random')
         setRandomArtist(random) 
       } catch (err) {
         setError(err)
@@ -56,29 +58,36 @@ function RandomArtCard({ id, name, image }) {
     getData()
   }, [])
 
+  if (loading || !randomArtist) {
+    return <h1>Loading</h1>
+  }
+
 
   return (
-    <div className="column is-one-quarter-desktop is-one-third-tablet">
+    <div className="art-container">
       <Link to={`artists/${id}`}>
         <div className="card">
           <div className="card-header">
-            <div className="card-header-title">Name: {randomArtist.name}</div>
+            <div className="card-header-title">{randomArtist.name}</div>
           </div>
           <div className="card-image">
-            <figure className="image">Image:
-              <img style={{ height: 250, width: 'auto', margin: '10px auto 0' }} src={randomArtist._links.image.href.replace('{image_version}', 'square')} alt={name}/>
+            <figure className="image">
+              <img style={{ minWidth: 500 }} src={randomArtist._links.image.href.replace('{image_version}', 'large')} alt={name}/>
             </figure>
           </div>
-          <div className="card-content">
+          <div className="art-card-content">
             <h5>Location: {randomArtist.location}</h5>
           </div>
         </div>
       </ Link>
-      <button onClick={handleUgh} className="button">Ugh!</button>
-      <button onClick={handleYay} className="button">Yay!</button>
+      <button onClick={handleUgh} className="button">	
+        &#10006; Ugh!</button>
+      <Link to="/:artistId"><button onClick={handleYay} className="button">
+        &hearts; Yay!</button></ Link>
     </div>
   )
 }
 
 export default RandomArtCard
 
+//{randomArtist.name} {randomArtist.location}  

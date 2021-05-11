@@ -21,5 +21,9 @@ export function getTokenFromLocalStorage() {
 }
 
 export function getAllArtists() {
-  return axios.get('https://api.artsy.net/api/artists?size=200', headers())
+  return axios.get('https://api.artsy.net/api/artists?gene_id=50356574ab74980002000006&size=200', headers())
+}
+
+export function getSingleArtist(artistId) {
+  return axios.get('https://api.artsy.net/api/artists?gene_id=50356574ab74980002000006&?artist_id=4d8b92b34eb68a1b2c0003f4')
 }

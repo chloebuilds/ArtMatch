@@ -9,19 +9,16 @@ function Nav() {
       <div className="container">
         <div className="navbar-brand">
           <Link className="navbar-item" to="/">
-          🎨
+          🎨 ArtMatch
           </Link>
-          <Link className="navbar-item" to="/artists"> Artists </Link>
-          {/* <div className="navbar-menu">
-            <div className="navbar-start">
-              <Link className="navbar-item" to="/search">
-          Search
-              </Link>
-              <Link className="navbar-item" to="/">
-          Likes 
-              </Link>
-            </div>
-          </div> */}
+          <Link className="navbar-item" to="/artists"> 
+          Artists </Link>
+          <Link className="navbar-item" to="/matches">
+          Your Matches 
+          </Link>
+          <Link className="navbar-item" to="/search">
+          Search 
+          </Link>
         </div>
       </div>
     </nav>
