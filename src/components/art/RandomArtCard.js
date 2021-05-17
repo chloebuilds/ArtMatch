@@ -47,6 +47,7 @@ function RandomArtCard() {
         setRandomArtist(random) 
       } catch (err) {
         setError(err)
+        console.log(error)
       } finally { 
         setLoading(false)
       }
