@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom'
 import { getSingleArtist } from '../../lib/api'
 
 function ArtShow() {
-
+  // useParams is getting the id from the url
   const { artistId } = useParams()
   const [artist, setArtist] = React.useState(null)
   const [loading, setLoading] = React.useState(false)
@@ -16,7 +16,7 @@ function ArtShow() {
         const response = await getSingleArtist(artistId)
         setArtist(response.data)
       } catch (err) {
-        <p> Something went wrong....</p>
+        <p> Oh no! Something went wrong....</p>
       } finally {
         setLoading(false)
       }
@@ -26,39 +26,46 @@ function ArtShow() {
   }, [artistId])
 
   if (loading || !artist) {
-    return <h1>Loading</h1>
+    return (
+      <div className="loading-message">
+        <h3>Connecting you to your ArtMatch</h3>
+      </div> 
+    )
   }
   console.log('name:', artist, artist.name)
   console.log('location', !!artist.location)
 
   return (
     <div className="art-container">
-      <h1>Find out more about your ArtMatch..</h1>
+      <h1>More on your ArtMatch..</h1>
       <div className="artshow-container">
         <div className="card-header">
-          <div className="card-header-title">{artist.name}</div>
+          <div className="card-header-title"><p className="artist-name">{artist.name}</p></div>
         </div>
-        <figure className="image">
-          <img style={{ minWidth: 500 }} src={artist._links.image.href.replace('{image_version}', 'large')} alt={artist.name}/>
-        </figure>
-        <div className="art-card-content">
-          <h5>Gender:</h5> {artist.gender || 'Unknown'}
+        <div className="card-image">
+          <figure className="image">
+            {/* .replace() is adding the large.jpg version to the image url  */}
+            <img src={artist._links.image.href.replace('{image_version}', 'large')} alt={artist.name}/>
+          </figure>
         </div>
         <div className="art-card-content">
-          <h5>Nationality:</h5> {artist.nationality || 'Unknown'}
+          <h5>Gender: <span className="data">{artist.gender || 'Unknown'}</span></h5>
+        </div>
+        <div className="art-card-content">
+          <h5>Nationality: <span className="data">{artist.nationality || 'Unknown'}</span></h5>
         </div>
         <div>
           <div className="art-card-content">
-            <h5>Location:</h5> {artist.location || 'Unknown'}
+            <h5>Location: <span className="data">{artist.location || 'Unknown'}</span></h5>
           </div>
           <div className="art-card-content">
-            <h5>Birthday:</h5> {artist.birthday || 'Unknown'}
+            <h5>Birth year: <span className="data">{artist.birthday || 'Unknown'}</span></h5>
           </div>
           <div className="art-card-content">
-            <h5>Death date:</h5> {artist.deathday || 'Unknown'}
+            <h5>Deceased: <span className="data">{artist.deathday || 'Unknown'}</span></h5>
           </div>
           <div className="art-card-content">
-            <h5>Biography:</h5> {artist.biography || 'unknown... the dark and mysterious type'}
+            <h5>Biography: <span className="data">{artist.biography || 'Unknown... the dark and mysterious type'}</span></h5>
           </div>
           <div>
             <Link to="/artists"><button className="button button-right">

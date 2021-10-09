@@ -1,7 +1,8 @@
 @import '~bulma/bulma.sass';
 @import 'styles/buttons.scss';
 
-$footer-color: #8b50ca;
+$main-color: #8b50ca;
+$navbar-tab-hover-background-color: #c7ace4;
 
 /* optional reset for presentation */
 * {
@@ -21,13 +22,13 @@ $footer-color: #8b50ca;
 }
 
 .navbar {
-  background-color: $footer-color;
+  background-color: $main-color;
   color: white;
   font-weight: bold;
 }
 
 .art-container {
-  margin: 0 auto;
+  margin: 20px auto;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -40,6 +41,7 @@ $footer-color: #8b50ca;
   text-align: left;
   padding: 8px;
   width: 80%;
+  height: 80%;
 }
 .artshow-container {
     margin: 30px auto;
@@ -51,6 +53,10 @@ $footer-color: #8b50ca;
     background-color: rgba(255,255,255,.8);
     box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: center;
+    span.data {
+      font-size: 14px;
+      display: inline;
+    }
   }
 .loading-message {
   margin: 30px auto;
@@ -62,6 +68,7 @@ $footer-color: #8b50ca;
   background-color: rgba(255,255,255,.8);
   text-align: center;
 }
+
 h1 {
   text-transform: uppercase;
   color: #777;
@@ -70,35 +77,69 @@ h1 {
   text-align: center;
   padding: 20px;
 }
+
 h5 {
   font-weight: bold;
 }
+
+p.artist-name {
+  font-weight: bold;
+  font-size: 22px;
+}
+
 span {
   display: block;
   margin-top: 2rem;
   font-size: .7rem;
   color: #777;
-  a {
-    font-size: .7rem;
-    color: #999;
-    text-decoration: underline;
+}
+
+a {
+  color: #999;
+  &:focus {
+    outline: none;
   }
 }
 img {
   max-width: 500px;
 }
+.no-outline:focus {
+  outline: none;
+}
 
 footer {
   padding: 50px;
-  background-color: $footer-color;
+  margin-top: 20px;
+  background-color: $main-color;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  position: absolute;
+  margin-top: auto;
   height: 4rem;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 3;
+  z-index: 0;
+  p {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  h1 { 
+    font-size: 25px;
+    padding: unset;
+  }
+  .artshow-container {
+    max-width: 100%;
+    background-color: white;
+    border: none;
+    box-shadow: unset;
+    margin: unset;
+  }
+  footer {
+    padding-bottom: 10px;
+  }
 }

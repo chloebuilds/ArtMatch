@@ -14,11 +14,14 @@ function App() {
 
   React.useEffect(() => {
     const getData = async () => {
+      // getting the token with authorzation from the api 
       const tokenResponse = await getTokenFromAPI()
+      // then setting the token from the getTokenFromAPI() to localStorage
       setTokenToLocalStorage(tokenResponse.data.token)
       console.log(tokenResponse, 'token')
     }
     getData()
+    // setting an interval to get the data after 6 days because the token will expire
     setInterval(getData, 518_400_000)
   }, [])
 
